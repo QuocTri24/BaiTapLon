@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sự kiện - Khuyến mãi</title>
+    <link rel="stylesheet" href="/Web.css">
+    <link rel="stylesheet" href="/event.css">
+</head>
+
+<body>
+    <div class="header1">
+        <div class="container1">
+            <button id="prevButton">&lt;</button>
+            <button id="nextButton">&gt;</button>
+            <div class="text-display" id="textDisplay">
+                <!-- Nội dung sẽ được cập nhật bằng JavaScript -->
+            </div>
+        </div>
+
+        <div class="container2">
+            <div><img src="/hướng dẫn.PNG" alt="hướng dẫn" class="icon"></div>
+            <button id="guide-btn">Hướng dẫn mua hàng</button>
+            <div><img src="/ưu đãi.PNG" alt="ưu đãi" class="icon"></div>
+            <button id="promo-btn">Ưu đãi khách hàng</button>
+            <div><img src="/liên hệ.PNG" alt="liên hệ" class="icon"></div>
+            <button id="contact-btn">Thông tin liên hệ</button>
+        </div>
+
+        <!-- Modal Hướng dẫn -->
+        <div class="modal" id="guide-modal">
+            <div class="modal-content">
+                <h2>Hướng dẫn mua hàng</h2>
+                <ol>
+                    <li>Truy cập trang web và duyệt các sản phẩm.</li>
+                    <li>Nhấn vào sản phẩm để xem thông tin chi tiết.</li>
+                    <li>Chọn kích thước, số lượng và nhấn "Mua ngay" hoặc "Thêm vào giỏ hàng".</li>
+                    <li>Điền thông tin giao hàng và thanh toán.</li>
+                    <li>Chờ xác nhận và nhận sản phẩm tại nhà.</li>
+                </ol>
+                <button class="cancel">Đóng</button>
+            </div>
+        </div>
+
+        <!-- Modal Ưu đãi -->
+        <div class="modal" id="promo-modal">
+            <div class="modal-content">
+                <h2>Ưu đãi khách hàng</h2>
+                <ul>
+                    <li>Giảm giá 10% cho đơn hàng đầu tiên.</li>
+                    <li>Miễn phí vận chuyển cho đơn hàng trên 500.000 VND.</li>
+                    <li>Quà tặng hấp dẫn vào các dịp lễ.</li>
+                    <li>Ưu đãi đặc biệt dành cho khách hàng thân thiết.</li>
+                </ul>
+                <button class="cancel">Đóng</button>
+            </div>
+        </div>
+
+        <!-- Modal Thông tin liên hệ -->
+        <div class="modal" id="contact-modal">
+            <div class="modal-content">
+                <h2>Thông tin liên hệ</h2>
+                <p>Email: support@gauplushshop.com</p>
+                <p>Hotline: 0123 456 789</p>
+                <p>Địa chỉ: 123 Đường ABC, Quận XYZ, TP. Hồ Chí Minh</p>
+                <p>Giờ làm việc: Thứ 2 - Thứ 7, 8:00 - 18:00</p>
+                <button class="cancel">Đóng</button>
+            </div>
+        </div>
+        <!-- Modal form -->
+        <div class="modal" id="modal-form">
+            <div class="modal-content">
+                <h2>Thông tin thanh toán</h2>
+                <label for="name">Họ tên</label>
+                <input type="text" id="name" placeholder="Nhập họ tên">
+
+                <label for="phone">Số điện thoại</label>
+                <input type="text" id="phone" placeholder="Nhập số điện thoại">
+
+                <label for="address">Địa chỉ</label>
+                <input type="text" id="address" placeholder="Nhập địa chỉ">
+
+                <label for="note">Yêu cầu thêm</label>
+                <textarea id="note" rows="3" placeholder="Nhập yêu cầu"></textarea>
+
+                <div class="modal-actions">
+                    <button class="confirm">Xác nhận thanh toán</button>
+                    <button class="cart">Thêm vào giỏ hàng</button>
+                    <button class="cancel">Hủy</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" id="cart-modal">
+            <div class="modal-content">
+                <h2>Thông Tin Mua Hàng</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã Đơn Hàng</th>
+                            <th>Tên Sản Phẩm</th>
+                            <th>Giá Tiền</th>
+                            <th>Trạng Thái</th>
+                            <th>Thao Tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-table-body">
+                        <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
+                    </tbody>
+                </table>
+                <div class="modal-actions">
+                    <button class="cancel">Đóng</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Đăng nhập -->
+        <div class="auth-modal" id="loginModal">
+            <div class="modal-content">
+                <h2>Đăng nhập</h2>
+                <label for="login-email">Email:</label>
+                <input type="email" id="login-email" placeholder="Nhập email" required>
+                <label for="login-password">Mật khẩu:</label>
+                <input type="password" id="login-password" placeholder="Nhập mật khẩu" required>
+                <div class="modal-actions">
+                    <button id="login-submit">Đăng nhập</button>
+                    <button class="cancel">Đóng</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Đăng ký -->
+        <div class="auth-modal" id="registerModal">
+            <div class="modal-content">
+                <h2>Đăng ký</h2>
+                <label for="register-email">Email:</label>
+                <input type="email" id="register-email" placeholder="Nhập email" required>
+                <label for="register-password">Mật khẩu:</label>
+                <input type="password" id="register-password" placeholder="Nhập mật khẩu" required>
+                <label for="confirm-password">Xác nhận mật khẩu:</label>
+                <input type="password" id="confirm-password" placeholder="Nhập lại mật khẩu" required>
+                <div class="modal-actions">
+                    <button id="register-submit">Đăng ký</button>
+                    <button class="cancel">Đóng</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="header2">
+        <div>
+            <a href="/index.html"><img src="/logo.png" alt="logo" class="logo"></a>
+        </div>
+        <div class="promo-header">
+            <h1>Sự Kiện - Khuyến mãi</h1>
+        </div>
+        <div class="login-container">
+            <img src="/avatar.jpg" alt="User icon" class="user-icon">
+            <button id="login">Đăng nhập</button>
+            <span>/</span>
+            <button id="register">Đăng ký</button>
+        </div>
+
+        <div class="cart-container">
+            <img src="/gio0hang.PNG" alt="Giỏ hàng">
+            <span>Giỏ hàng</span>
+        </div>
+    </div>
+
+    <main class="promo-container">
+        <section class="promo-item">
+            <h2>Gấu Đen Thứ 6</h2>
+            <p>Siêu ưu đãi giảm giá 50% trong ngày Black Friday. Nhanh tay sở hữu!</p>
+            <img src="/BlackFriday.webp" alt="BlackFriday">
+        </section>
+
+        <section class="promo-item">
+            <h2>Gấu Giáng Sinh</h2>
+            <p>Giảm giá lên đến 30% cho tất cả sản phẩm Gấu Bông trong mùa Giáng Sinh!</p>
+            <img src="/merry-christmas.jpg" alt="merrychristmas">
+        </section>
+
+        <section class="promo-item">
+            <h2>Gấu Năm Mới</h2>
+            <p>Siêu ưu đãi giảm giá 20% trong 1 tuần đầu tiên của Tết Dương Lịch. Nhanh tay sở hữu!</p>
+            <img src="/Happy-New-Year.jpg" alt="NewYear">
+        </section>
+
+        <section class="promo-item">
+            <h2>Gấu Couple</h2>
+            <p>Siêu ưu đãi giảm giá 25% Khi đi mua sắm cùng người yêu trong ngày Valentines. Nhanh chân lên nào!</p>
+            <img src="/valentines.jpg" alt="Valentines">
+        </section>
+
+        <section class="promo-item">
+            <h2>Gấu Yêu Thương</h2>
+            <p>Siêu ưu đãi giảm giá 35% đối với các bạn nữ mua trong ngày 8/3 . Nhanh tay sở hữu!</p>
+            <img src="/Mung83.jpg" alt="QuocTePhuNu">
+        </section>
+
+        <section class="promo-item">
+            <h2>Gấu Trường Học</h2>
+            <p>Siêu ưu đãi giảm giá 35% đối với các bạn học sinh - sinh viên trong ngày 20/11. Nhanh tay sở hữu!</p>
+            <img src="/nhagiaoVN.webp" alt="NGVN">
+        </section>
+
+        <section class="promo-item">
+            <h2>Gấu Quá Trời Gấu</h2>
+            <p>Deal Siêu khủng, mua 3 tặn 2 với những khách hàng đầu tiên. Nhanh tay sở hữu!</p>
+            <img src="/muatnag.png" alt="Black Friday Sale">
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Gấu Plush Shop. Mọi quyền được bảo lưu.</p>
+    </footer>
+
+    <script src="/event .js"></script>
+    <script src="/Thao Tác Mua Hàng .js"></script>
+    <script src="/Thao tác tiện ích .js"></script>
+    <script src="/Thao tác đăng nhập.js"></script>
+</body>
+
+</html>
